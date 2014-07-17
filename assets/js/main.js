@@ -88,7 +88,9 @@ function basicCrate(size) {
  ***********************/
 
 function renderScene() {
-  renderer.render( scene, camera );    
+  camera.lookAt(meshes.squirl.position);
+  renderer.render( scene, camera );
+ 	  
 }
 
 function updateScene() {  
@@ -96,11 +98,7 @@ function updateScene() {
   controls.update();  
 }
 
-<<<<<<< HEAD
-function animateScene() {
-  //camera.lookAt(new Vector3(camera.position - mesh.position));
-=======
-function animateScene() {  
+function animateScene() { 
   window.requestAnimationFrame( animateScene );
   renderScene();
   updateScene();  
@@ -148,7 +146,6 @@ function initializeScene() {
   var aspectRatio  = canvasWidth/canvasHeight;
   camera = new THREE.PerspectiveCamera( CAMERA.fov, aspectRatio, CAMERA.near, CAMERA.far );
   camera.position.set( CAMERA.zoomX, CAMERA.zoomY, CAMERA.zoomZ );
-  camera.lookAt(0, 5.5, 0);
   scene.add(camera);
 
   // Add WebGL renderer to DOM
@@ -210,7 +207,8 @@ function initializeScene() {
 			  );
 			  console.log(meshes.squirl);
 			  meshes.squirl.position.set(0, 5.5, 0);
-			  scene.add(meshes.squirl);			  
+			  scene.add(meshes.squirl);
+			  		  
 	});		
 
 }
