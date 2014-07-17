@@ -7,7 +7,8 @@
 /*******************
  * Manage Settings *
  *******************/
-
+var $=jQuery;
+ 
 var CAMERA = {
   fov : 45,
   near : 1,
@@ -124,6 +125,8 @@ function addToDOM(object) {
 			success: success
 		});
    }
+   
+ loadLevel(1);  
    
 
 /************************
