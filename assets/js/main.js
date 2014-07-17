@@ -185,12 +185,13 @@ function initializeScene() {
   var texture =  './mesh/textures/squir1.png';
 			// create a new material
 			  var sTexture = new THREE.ImageUtils.loadTexture( texture );
-              var sMaterial = new THREE.MeshLambertMaterial({ map: crateTexture });
+              var sMaterial = new THREE.MeshLambertMaterial({ map: sTexture });
 			  var mesh = new THREE.Mesh(
 				geometry,
 				sMaterial
 			  );
-			  
+			  console.log(mesh);
+			  mesh.position.set(0, 5.5, 0);
 			  scene.add(mesh);
 	});
 
