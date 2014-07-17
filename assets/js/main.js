@@ -31,6 +31,9 @@ var RENDERER = {
 };
 
 var meshes = {};
+var game = {};
+
+game.level=1;
 
 /********************
  * Global Variables *
@@ -94,7 +97,7 @@ function updateScene() {
 }
 
 function animateScene() {
-  camera.lookAt(new Vector3(camera.position - mesh.position));
+  //camera.lookAt(new Vector3(camera.position - mesh.position));
   window.requestAnimationFrame( animateScene );
   renderScene();
   updateScene();
@@ -111,6 +114,16 @@ function addToDOM(object) {
   container.appendChild(object);
 }
 
+//load level
+   function loadLevel(level){
+   var levelURL = "\assets\js\levels\level"+level+".js";
+	   $.ajax({
+			url: levelURL,
+			dataType: "script",
+			success: success
+		});
+   }
+   
 
 /************************
  * Scene Initialization *
@@ -178,9 +191,9 @@ function initializeScene() {
 
   // Example: crate with texture
   var crateSize = 5;
-  crate = basicCrate(crateSize);
-  crate.position.set(0, crateSize/2, 0);
-  scene.add(crate);
+  meshes.crate = basicCrate(crateSize);
+  meshes.crate.position.set(0, crateSize/2, 0);
+  scene.add( meshes.crate);
   
   var loader = new THREE.JSONLoader();
   loader.load('./mesh/Squirrel.js', function (geometry) {
@@ -196,6 +209,9 @@ function initializeScene() {
 			  meshes.squirl.position.set(0, 5.5, 0);
 			  scene.add(meshes.squirl);
 	});
+	
+	
+	
 
 }
 
