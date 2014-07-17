@@ -118,12 +118,14 @@ function addToDOM(object) {
 
 //load level
    function loadLevel(level){
-   var levelURL = "\assets\js\levels\level"+level+".js";
+   var levelURL = "./assets/js/levels/level"+level+".js";
 	   $.ajax({
 			url: levelURL,
 			dataType: "script",
-			success: success
+			success: function () { console.log("Level Loaded"); levelInit(); }
 		});
+		
+		
    }
    
  loadLevel(1);  
