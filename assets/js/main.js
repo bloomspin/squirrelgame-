@@ -30,6 +30,7 @@ var RENDERER = {
   antialias : false,
 };
 
+var meshes = {};
 
 /********************
  * Global Variables *
@@ -187,13 +188,13 @@ function initializeScene() {
 			// create a new material
 			  var sTexture = new THREE.ImageUtils.loadTexture( texture );
               var sMaterial = new THREE.MeshLambertMaterial({ map: sTexture });
-			  var mesh = new THREE.Mesh(
+			  meshes.squirl = new THREE.Mesh(
 				geometry,
 				sMaterial
 			  );
-			  console.log(mesh);
-			  mesh.position.set(0, 5.5, 0);
-			  scene.add(mesh);
+			  console.log(meshes.squirl);
+			  meshes.squirl.position.set(0, 5.5, 0);
+			  scene.add(meshes.squirl);
 	});
 
 }
