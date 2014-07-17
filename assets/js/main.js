@@ -182,22 +182,14 @@ function initializeScene() {
   
   var loader = new THREE.JSONLoader();
   loader.load('./mesh/Squirrel.js', function (geometry) {
-	console.log('loaded');
+  var texture =  './mesh/textures/squir1.png';
 			// create a new material
-			  var material = new THREE.MeshLambertMaterial({
-				map: THREE.ImageUtils.loadTexture('./mesh/textures/squir1.tga'),  // specify and load the texture
-				colorAmbient: [0.480000026226044, 0.480000026226044, 0.480000026226044],
-				colorDiffuse: [0.480000026226044, 0.480000026226044, 0.480000026226044],
-				colorSpecular: [0.8999999761581421, 0.8999999761581421, 0.8999999761581421]
-			  });
-			  
-			  // create a mesh with models geometry and material
+			  var sTexture = new THREE.ImageUtils.loadTexture( texture );
+              var sMaterial = new THREE.MeshLambertMaterial({ map: crateTexture });
 			  var mesh = new THREE.Mesh(
 				geometry,
-				material
+				sMaterial
 			  );
-			  
-			  mesh.rotation.y = -Math.PI/5;
 			  
 			  scene.add(mesh);
 	});

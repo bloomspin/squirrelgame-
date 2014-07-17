@@ -27,7 +27,7 @@
 		"colorSpecular" : [0.45000001788139343, 0.45000001788139343, 0.45000001788139343],
 		"depthTest" : true,
 		"depthWrite" : true,
-		"mapDiffuse" : "squir1.tga",
+		"mapDiffuse" : "textures/squir1.png",
 		"mapDiffuseWrap" : ["repeat", "repeat"],
 		"shading" : "Lambert",
 		"specularCoef" : 9,
