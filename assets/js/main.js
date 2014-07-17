@@ -206,7 +206,10 @@ function initializeScene() {
 				sMaterial
 			  );
 			  console.log(meshes.squirl);
-			  meshes.squirl.position.set(0, 5.5, 0);
+			  
+			  
+			  meshes.squirl.scale.set(3,3,3);
+			  meshes.squirl.position.set(0, 8, 0);
 			  scene.add(meshes.squirl);
 			  		  
 	});		
