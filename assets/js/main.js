@@ -182,7 +182,7 @@ function initializeScene() {
   
   var loader = new THREE.JSONLoader();
   loader.load('./mesh/Squirrel.js', function (geometry) {
-  var texture =  './mesh/textures/squir1.png';
+			var texture =  './mesh/textures/squir1.png';
 			// create a new material
 			  var sTexture = new THREE.ImageUtils.loadTexture( texture );
               var sMaterial = new THREE.MeshLambertMaterial({ map: sTexture });
