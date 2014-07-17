@@ -94,7 +94,7 @@ function updateScene() {
 }
 
 function animateScene() {
-  camera.lookAt(new Vector3(camera.position - mesh.position));
+  camera.lookAt((camera.position - mesh.position));
   window.requestAnimationFrame( animateScene );
   renderScene();
   updateScene();
