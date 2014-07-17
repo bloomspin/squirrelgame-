@@ -180,10 +180,9 @@ function initializeScene() {
   crate.position.set(0, crateSize/2, 0);
   scene.add(crate);
   
-  var loader = new THREE.ColladaLoader();
-  loader.options.convertUpAxis = true;
+  var loader = new THREE.JSONLoader();
   loader.load('./mesh/Squirrel.js', function (geometry) {
-
+	console.log('loaded');
 			// create a new material
 			  var material = new THREE.MeshLambertMaterial({
 				map: THREE.ImageUtils.loadTexture('./mesh/textures/squir1.tga'),  // specify and load the texture
