@@ -7,16 +7,9 @@
 /*******************
  * Manage Settings *
  *******************/
-var $=jQuery;
+
  
-var CAMERA = {
-  fov : 45,
-  near : 1,
-  far : 1000,
-  zoomX : 0,
-  zoomY : 20,
-  zoomZ : 50,
-};
+
 
 var CONTROLS = {
   enabled : true,
@@ -41,14 +34,15 @@ game.level=1;
  ********************/
 
 // Built-in
-var scene, camera, renderer;
-
+var scene, renderer;
+var render ={};
 // Plugins
-var controls, stats, gui;
+var stats, gui;
 
 // Scene objects
 var crate;
-
+var canvasWidth  = window.innerWidth;
+var canvasHeight = window.innerHeight;
 
 /********************
  * Helper Functions *
@@ -89,14 +83,15 @@ function basicCrate(size) {
  ***********************/
 
 function renderScene() {
-  camera.lookAt(meshes.squirl.position);
-  renderer.render( scene, camera );
- 	  
+	for(var r in render){
+		console.log(render[r]);
+		var temp=render[r];
+	}
+  renderer.render( scene,camera );
 }
 
 function updateScene() {  
-  stats.update();
-  controls.update();  
+  stats.update(); 
 }
 
 function animateScene() { 
@@ -106,8 +101,6 @@ function animateScene() {
 }
 
 function resizeWindow() {
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
@@ -143,15 +136,8 @@ function initializeScene() {
 
   // Scene and window resize listener
   scene = new THREE.Scene();
-  var canvasWidth  = window.innerWidth;
-  var canvasHeight = window.innerHeight;
   window.addEventListener('resize', resizeWindow, false);
 
-  // Camera and set initial view
-  var aspectRatio  = canvasWidth/canvasHeight;
-  camera = new THREE.PerspectiveCamera( CAMERA.fov, aspectRatio, CAMERA.near, CAMERA.far );
-  camera.position.set( CAMERA.zoomX, CAMERA.zoomY, CAMERA.zoomZ );
-  scene.add(camera);
 
   // Add WebGL renderer to DOM
   renderer = new THREE.WebGLRenderer(RENDERER);
@@ -163,10 +149,7 @@ function initializeScene() {
    * Initialize Plugins *
    **********************/
 
-  // OrbitControls using mouse
-  controls = new THREE.OrbitControls(camera);
-  for (var key in CONTROLS) { controls[key] = CONTROLS[key]; }
-  controls.addEventListener('change', renderScene);
+ 
 
   // Stats fps/ms box
   stats = new Stats();
@@ -206,25 +189,20 @@ function initializeScene() {
 			// create a new material
 			  var sTexture = new THREE.ImageUtils.loadTexture( texture );
               var sMaterial = new THREE.MeshLambertMaterial({ map: sTexture });
-			  meshes.squirl = new THREE.Mesh(
+			  meshes.squirrel = new THREE.Mesh(
 				geometry,
 				sMaterial
 			  );
 			  console.log(meshes.squirl);
 			  
 			  
-			  meshes.squirl.scale.set(3,3,3);
-			  meshes.squirl.position.set(0, 8, 0);
-			  scene.add(meshes.squirl);
+			  meshes.squirrel.scale.set(3,3,3);
+			  meshes.squirrel.position.set(0, 8, 0);
+			  scene.add(meshes.squirrel);
 			  		  
 	});		
 
 }
 
 
-/**********************
- * Render and Animate *
- **********************/
 
-initializeScene();
-animateScene();
