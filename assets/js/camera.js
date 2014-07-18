@@ -1,4 +1,4 @@
-  var camera;
+ var camera;
   var CAMERA = {
   fov : 45,
   near : 1,
@@ -15,8 +15,9 @@
 	  // Camera and set initial view
 	  var aspectRatio  = canvasWidth/canvasHeight;
 	  camera = new THREE.PerspectiveCamera( CAMERA.fov, aspectRatio, CAMERA.near, CAMERA.far );
-	  scene.add(camera);
-
+	  //scene.add(camera);
+	  meshes.squirrel.add( camera );
+	  
 	 // OrbitControls using mouse
 	controls = new THREE.OrbitControls(camera);
 	for (var key in CONTROLS) { controls[key] = CONTROLS[key]; }
@@ -31,11 +32,13 @@
 	
 	function render(){
 	console.log("Camera Render");
-	    camera.position.set(meshes.squirrel.position.x+20,meshes.squirrel.position.y+5,meshes.squirrel.position.z);
-		camera.lookAt(meshes.squirrel.position);
+		
 	}
-
-	//Add to render;
-	render.camera = render();
+	
+	$( window ).mousemove(function(e) {
+	
+		render();
+	
+	});
   
 });

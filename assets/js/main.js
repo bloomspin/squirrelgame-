@@ -83,10 +83,6 @@ function basicCrate(size) {
  ***********************/
 
 function renderScene() {
-	for(var r in render){
-		console.log(render[r]);
-		var temp=render[r];
-	}
   renderer.render( scene,camera );
 }
 
@@ -193,7 +189,7 @@ function initializeScene() {
 				geometry,
 				sMaterial
 			  );
-			  console.log(meshes.squirl);
+			  console.log(meshes.squirrel);
 			  
 			  
 			  meshes.squirrel.scale.set(3,3,3);
