@@ -5,7 +5,7 @@ var controls;
 	$( window ).keydown(function(e) {
 
 		if(e.key=="w"){
-			meshes.squirrel.position.set(meshes.squirrel.position.x-0.5,meshes.squirrel.position.y,meshes.squirrel.position.z+meshes.squirrel.rotation.y)
+			meshes.squirrel.position.set((meshes.squirrel.position.x-0.5)+(meshes.squirrel.rotation.y),meshes.squirrel.position.y,meshes.squirrel.position.z)
 		}
 		
 		if(e.key=="s"){

@@ -16,12 +16,12 @@ function levelInit(){
   scene.add( meshes.crate);
 	
 	var loader = new THREE.JSONLoader();
-  loader.load('./mesh/building1.js', function (geometry) {
+    loader.load('./mesh/building1.js', function (geometry) {
 			// create a new material
 			  meshes.building1 = new THREE.Mesh(
 				geometry
 			  );
-			  meshes.building1.scale.set(10,10,10);
+			  meshes.building1.scale.set(2,2,2);
 			  meshes.building1.position.set(10, 0, 30);
 			  scene.add(meshes.building1);
 			  		  
