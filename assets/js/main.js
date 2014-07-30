@@ -8,18 +8,6 @@
  * Manage Settings *
  *******************/
 
- 
-
-
-var CONTROLS = {
-  enabled : true,
-  userPan : true,
-  userPanSpeed : 1,
-  minDistance : 10.0,
-  maxDistance : 200.0,
-  maxPolarAngle : (Math.PI/180) * 80,
-};
-
 var RENDERER = {
   antialias : false,
 };
