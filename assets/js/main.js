@@ -11,9 +11,10 @@
 var RENDERER = {
   antialias : false,
 };
-
+	 
 var meshes = {};
 var game = {};
+
 var loader = new THREE.JSONLoader();
 game.level=0;
 
@@ -65,18 +66,20 @@ function basicCrate(size) {
   return crate;
 }
 
-
 /***********************
  * Rendering Functions *
  ***********************/
 
+Physijs.scripts.worker = './assets/js/lib/physics/physijs_worker.js';
+Physijs.scripts.ammo = 'ammo.js';
+ 
 function renderScene() {
   renderer.render( scene,camera );
 }
 
 function updateScene() {  
   stats.update();
-  
+  scene.simulate();
   //fire Trigger
   $(window).trigger("updateScene");  
 }
@@ -139,7 +142,10 @@ function initializeScene() {
    *************************/
 
   // Scene and window resize listener
-  scene = new THREE.Scene();
+
+  scene = new Physijs.Scene(); // create Physijs scene
+  scene.setGravity(new THREE.Vector3( 0, -50, 0 )); // set gravity
+
   window.addEventListener('resize', resizeWindow, false);
 
 
@@ -193,13 +199,13 @@ function initializeScene() {
 			// create a new material
 			  var sTexture = new THREE.ImageUtils.loadTexture( texture );
               var sMaterial = new THREE.MeshLambertMaterial({ map: sTexture });
-			  meshes.squirrel = new THREE.Mesh(
+			  meshes.squirrel = new Physijs.BoxMesh(
 				geometry,
-				sMaterial
+				sMaterial,
+				0
 			  );
 			  console.log(meshes.squirrel);
-			  
-			  
+
 			  meshes.squirrel.scale.set(3,3,3);
 			  meshes.squirrel.position.set(0, 8, 0);
 			  scene.add(meshes.squirrel);
