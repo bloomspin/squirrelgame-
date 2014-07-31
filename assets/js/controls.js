@@ -13,49 +13,45 @@ var controls;
 	
 	var init = false;
 	
+	var clamp = function(num, min, max) {
+		return num < min ? min : (num > max ? max : num);
+	};
+	
 	$( window ).keyup(function(e) {
 
 		if(e.key=="w"){	
-			playerUp = false;
-			//meshes.squirrel.position.set((meshes.squirrel.position.x-0.5)+(meshes.squirrel.rotation.y),meshes.squirrel.position.y,meshes.squirrel.position.z)
+			playerUp = false;			
 		}
 		
 		if(e.key=="s"){		
-			playerDown = false;
-			//meshes.squirrel.position.set(meshes.squirrel.position.x+0.5,meshes.squirrel.position.y,meshes.squirrel.position.z)
+			playerDown = false;			
 		}
 		
 		if(e.key=="a"){
-			playerLeft = false;
-			//meshes.squirrel.position.set(meshes.squirrel.position.x+meshes.squirrel.rotation.y,meshes.squirrel.position.y,meshes.squirrel.position.z+0.5)
+			playerLeft = false;			
 		}
 		
 		if(e.key=="d"){
-			playerRight = false;
-			//meshes.squirrel.position.set(meshes.squirrel.position.x+meshes.squirrel.rotation.y,meshes.squirrel.position.y,meshes.squirrel.position.z-0.5)
+			playerRight = false;			
 		}		
 		});
 	
 	$( window ).keydown(function(e) {
 
 		if(e.key=="w"){	
-			playerUp = true;
-			//meshes.squirrel.position.set((meshes.squirrel.position.x-0.5)+(meshes.squirrel.rotation.y),meshes.squirrel.position.y,meshes.squirrel.position.z)
+			playerUp = true;			
 		}
 		
 		if(e.key=="s"){		
-			playerDown = true;
-			//meshes.squirrel.position.set(meshes.squirrel.position.x+0.5,meshes.squirrel.position.y,meshes.squirrel.position.z)
+			playerDown = true;			
 		}
 		
 		if(e.key=="a"){
-			playerLeft = true;
-			//meshes.squirrel.position.set(meshes.squirrel.position.x+meshes.squirrel.rotation.y,meshes.squirrel.position.y,meshes.squirrel.position.z+0.5)
+			playerLeft = true;			
 		}
 		
 		if(e.key=="d"){
-			playerRight = true;
-			//meshes.squirrel.position.set(meshes.squirrel.position.x+meshes.squirrel.rotation.y,meshes.squirrel.position.y,meshes.squirrel.position.z-0.5)
+			playerRight = true;			
 		}		
 		
 		if (e.key == " "){			
@@ -74,27 +70,29 @@ var controls;
 		}
 		
 		if (cameraMoveLeft){			
-			camera.rotateY(0.01);
+			camera.rotateY(0.01);			
 		}
 		
 		if (cameraMoveRight){
 			camera.rotateY(-0.01);
-		}		
+		}				
 		
 		if(playerUp){
-			meshes.squirrel.position.set((meshes.squirrel.position.x-0.5)+(meshes.squirrel.rotation.y),meshes.squirrel.position.y,meshes.squirrel.position.z)		
+			//meshes.squirrel.position.x -= 0.5;
+			meshes.squirrel.translateX(-0.5);
 		}
 		
 		if(playerDown){
-			meshes.squirrel.position.set(meshes.squirrel.position.x+0.5,meshes.squirrel.position.y,meshes.squirrel.position.z)
+			//meshes.squirrel.position.x += 0.5;
+			meshes.squirrel.translateX(0.5);
 		}
 		
-		if(playerLeft){
-			meshes.squirrel.position.set(meshes.squirrel.position.x+meshes.squirrel.rotation.y,meshes.squirrel.position.y,meshes.squirrel.position.z+0.5)
+		if(playerLeft){						
+			meshes.squirrel.rotateY(0.05);						
 		}
 		
-		if(playerRight){
-			meshes.squirrel.position.set(meshes.squirrel.position.x+meshes.squirrel.rotation.y,meshes.squirrel.position.y,meshes.squirrel.position.z-0.5)
+		if(playerRight){			
+			meshes.squirrel.rotateY(-0.05);			
 		}	
 	});
 	
