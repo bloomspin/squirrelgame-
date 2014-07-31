@@ -16,6 +16,7 @@ var meshes = {};
 var game = {};
 
 var loader = new THREE.JSONLoader();
+var ObjectLoader = new THREE.ObjectLoader();
 game.level=0;
 
 /********************
@@ -77,7 +78,7 @@ function renderScene() {
   renderer.render( scene,camera );
 }
 
-function updateScene() {  
+function updateScene() {
   stats.update();
   scene.simulate();
   //fire Trigger
@@ -112,23 +113,9 @@ function addToDOM(object) {
 			error : function(e) { console.log("loadLevelError:"); console.log(e)}
 			
 		});
-		
-		   loader.load('./assets/js/levels/mesh_level1.js', function (geometry) {
-			  console.log("mesh_level1");
-			  meshes.level = new THREE.Mesh( 
-				geometry
-			  );
-			  meshes.level.scale.set(100,100,100);
-			  meshes.level.position.set(0, 0, 0);
-			  scene.add(meshes.level);
-			  		  
-	});		
 	
-		
-		
    }
-   
- loadLevel(1);  
+ 
    
 
 /************************
@@ -202,9 +189,8 @@ function initializeScene() {
 			  meshes.squirrel = new Physijs.BoxMesh(
 				geometry,
 				sMaterial,
-				0
+				1
 			  );
-			  console.log(meshes.squirrel);
 
 			  meshes.squirrel.scale.set(3,3,3);
 			  meshes.squirrel.position.set(0, 8, 0);
@@ -212,6 +198,9 @@ function initializeScene() {
 			  		  
 	});		
 
+	   
+ loadLevel(1); 
+	
 }
 
 
