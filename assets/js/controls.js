@@ -33,15 +33,15 @@ var controls;
 	});
 	
 	$( window ).on("updateScene", function(e) {
-		if (cameraMoveDown){
+		if (cameraMoveDown){			
 			camera.rotateX(-0.01);
 		}
 		
-		if (cameraMoveUp){
+		if (cameraMoveUp){			
 			camera.rotateX(0.01);
 		}
 		
-		if (cameraMoveLeft){
+		if (cameraMoveLeft){			
 			camera.rotateY(0.01);
 		}
 		
@@ -56,11 +56,11 @@ var controls;
 		var centerX = $(window).width()/2;
 		var centerY = $(window).height()/2;
 		
-		if (mouseX < centerX - centerX * 0.25){
+		if (mouseX < centerX - centerX * 0.1){
 			console.log("left");
 			cameraMoveRight = false;
 			cameraMoveLeft = true;
-		} else if (mouseX > centerX + centerX * 0.25){
+		} else if (mouseX > centerX + centerX * 0.1){
 			console.log("right");
 			cameraMoveRight = true;
 			cameraMoveLeft = false;
@@ -70,11 +70,11 @@ var controls;
 			cameraMoveLeft = false;
 		}
 		
-		if(mouseY < centerY - centerY * 0.25){
+		if(mouseY < centerY - centerY * 0.80){
 			console.log("up");
 			cameraMoveDown = false;
 			cameraMoveUp = true;
-		} else if (mouseY > centerY + centerY * 0.25){
+		} else if (mouseY > centerY + centerY * 0.80){
 			console.log("down");
 			cameraMoveDown = true;
 			cameraMoveUp = false;
