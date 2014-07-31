@@ -14,7 +14,7 @@ var RENDERER = {
 
 var meshes = {};
 var game = {};
-
+var loader = new THREE.JSONLoader();
 game.level=0;
 
 /********************
@@ -98,13 +98,29 @@ function addToDOM(object) {
 
 //load level
    function loadLevel(level){
-	   console.log("loadLevel");
+	   
 	   var levelURL = "./assets/js/levels/level"+level+".js";
+	   console.log("loadLevel:"+levelURL);
+	   
 	   $.ajax({
 			url: levelURL,
 			dataType: "script",
-			success: function () { console.log("Level Loaded"); levelInit(); }
+			success: function () { console.log("Level Loaded"); levelInit(); },
+			error : function(e) { console.log("loadLevelError:"); console.log(e)}
+			
 		});
+		
+		   loader.load('./assets/js/levels/mesh_level1.js', function (geometry) {
+			  console.log("mesh_level1");
+			  meshes.level = new THREE.Mesh( 
+				geometry
+			  );
+			  meshes.level.scale.set(100,100,100);
+			  meshes.level.position.set(0, 0, 0);
+			  scene.add(meshes.level);
+			  		  
+	});		
+	
 		
 		
    }
@@ -171,7 +187,7 @@ function initializeScene() {
   meshes.crate.position.set(0, crateSize/2, 0);
   scene.add( meshes.crate);
   
-  var loader = new THREE.JSONLoader();
+  
   loader.load('./mesh/Squirrel.js', function (geometry) {
 			var texture =  './mesh/textures/squir1.png';
 			// create a new material

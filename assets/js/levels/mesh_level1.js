@@ -74,7 +74,7 @@
 			"wireframe": false
 		}],
 	"object": {
-		"uuid": "D2CE7D54-FBB2-4C3F-B0C0-8C1BBF136C1A",
+		"uuid": "2B36E64E-ED6A-41D1-90BF-21FFB1EF7EDD",
 		"type": "Scene",
 		"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
 		"children": [
@@ -85,14 +85,6 @@
 				"geometry": "B1997349-EE7A-4222-B185-01DBED1C41A0",
 				"material": "0551911A-CC2A-4E2D-8DF8-C80E7B62EDF5",
 				"matrix": [9,0,0,0,0,0.07999999821186066,0,0,0,0,8.15999984741211,0,0,0,0,1]
-			},
-			{
-				"uuid": "7AFF928E-5C4C-47E0-98E5-B4C9E25437FC",
-				"name": "HemisphereLight 1",
-				"type": "HemisphereLight",
-				"color": 16777215,
-				"groundColor": 16755200,
-				"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,200,439.6400146484375,200,1]
 			},
 			{
 				"uuid": "480EA03E-90CF-4C40-8362-83EC686CD29F",
