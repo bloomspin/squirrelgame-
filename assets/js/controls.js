@@ -62,11 +62,11 @@ var controls;
 	
 	$( window ).on("updateScene", function(e) {
 		if (cameraMoveDown){			
-			// Orbit camera up
+			// Orbit camera up			
 		}
 		
 		if (cameraMoveUp){		
-			// Orbit camera down
+			// Orbit camera down			
 		}
 		
 		if (cameraMoveLeft){			
@@ -77,13 +77,11 @@ var controls;
 			camera.rotateY(-0.01);
 		}				
 		
-		if(playerUp){
-			//meshes.squirrel.position.x -= 0.5;
+		if(playerUp){			
 			meshes.squirrel.translateX(-0.5);
 		}
 		
-		if(playerDown){
-			//meshes.squirrel.position.x += 0.5;
+		if(playerDown){			
 			meshes.squirrel.translateX(0.5);
 		}
 		
