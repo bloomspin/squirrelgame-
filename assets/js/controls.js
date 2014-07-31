@@ -11,34 +11,66 @@ var controls;
 	var playerLeft = false;
 	var playerRight = false;
 	
-	$( window ).keydown(function(e) {
+	var init = false;
+	
+	$( window ).keyup(function(e) {
 
-		if(e.key=="w"){
+		if(e.key=="w"){	
+			playerUp = false;
 			//meshes.squirrel.position.set((meshes.squirrel.position.x-0.5)+(meshes.squirrel.rotation.y),meshes.squirrel.position.y,meshes.squirrel.position.z)
 		}
 		
-		if(e.key=="s"){
+		if(e.key=="s"){		
+			playerDown = false;
 			//meshes.squirrel.position.set(meshes.squirrel.position.x+0.5,meshes.squirrel.position.y,meshes.squirrel.position.z)
 		}
 		
 		if(e.key=="a"){
+			playerLeft = false;
 			//meshes.squirrel.position.set(meshes.squirrel.position.x+meshes.squirrel.rotation.y,meshes.squirrel.position.y,meshes.squirrel.position.z+0.5)
 		}
 		
 		if(e.key=="d"){
+			playerRight = false;
 			//meshes.squirrel.position.set(meshes.squirrel.position.x+meshes.squirrel.rotation.y,meshes.squirrel.position.y,meshes.squirrel.position.z-0.5)
 		}		
+		});
+	
+	$( window ).keydown(function(e) {
+
+		if(e.key=="w"){	
+			playerUp = true;
+			//meshes.squirrel.position.set((meshes.squirrel.position.x-0.5)+(meshes.squirrel.rotation.y),meshes.squirrel.position.y,meshes.squirrel.position.z)
+		}
+		
+		if(e.key=="s"){		
+			playerDown = true;
+			//meshes.squirrel.position.set(meshes.squirrel.position.x+0.5,meshes.squirrel.position.y,meshes.squirrel.position.z)
+		}
+		
+		if(e.key=="a"){
+			playerLeft = true;
+			//meshes.squirrel.position.set(meshes.squirrel.position.x+meshes.squirrel.rotation.y,meshes.squirrel.position.y,meshes.squirrel.position.z+0.5)
+		}
+		
+		if(e.key=="d"){
+			playerRight = true;
+			//meshes.squirrel.position.set(meshes.squirrel.position.x+meshes.squirrel.rotation.y,meshes.squirrel.position.y,meshes.squirrel.position.z-0.5)
+		}		
+		
+		if (e.key == " "){			
+		}
 		
 		renderScene();		
 	});
 	
 	$( window ).on("updateScene", function(e) {
 		if (cameraMoveDown){			
-			camera.rotateX(-0.01);
+			// Orbit camera up
 		}
 		
-		if (cameraMoveUp){			
-			camera.rotateX(0.01);
+		if (cameraMoveUp){		
+			// Orbit camera down
 		}
 		
 		if (cameraMoveLeft){			
@@ -48,6 +80,22 @@ var controls;
 		if (cameraMoveRight){
 			camera.rotateY(-0.01);
 		}		
+		
+		if(playerUp){
+			meshes.squirrel.position.set((meshes.squirrel.position.x-0.5)+(meshes.squirrel.rotation.y),meshes.squirrel.position.y,meshes.squirrel.position.z)		
+		}
+		
+		if(playerDown){
+			meshes.squirrel.position.set(meshes.squirrel.position.x+0.5,meshes.squirrel.position.y,meshes.squirrel.position.z)
+		}
+		
+		if(playerLeft){
+			meshes.squirrel.position.set(meshes.squirrel.position.x+meshes.squirrel.rotation.y,meshes.squirrel.position.y,meshes.squirrel.position.z+0.5)
+		}
+		
+		if(playerRight){
+			meshes.squirrel.position.set(meshes.squirrel.position.x+meshes.squirrel.rotation.y,meshes.squirrel.position.y,meshes.squirrel.position.z-0.5)
+		}	
 	});
 	
 	$( window ).mousemove(function(e) {
@@ -67,7 +115,7 @@ var controls;
 		} else {
 			console.log("Clear left/right");
 			cameraMoveRight = false;
-			cameraMoveLeft = false;
+			cameraMoveLeft = false;						
 		}
 		
 		if(mouseY < centerY - centerY * 0.80){
@@ -81,11 +129,18 @@ var controls;
 		} else {
 			console.log("Clear up/down");
 			cameraMoveDown = false;
-			cameraMoveUp = false;
+			cameraMoveUp = false;			
 		}
 		
-		camera.position.set(3, 0.8, 0);
-		camera.lookAt(new THREE.Vector3());		
+		if (!cameraMoveDown && !cameraMoveUp && !cameraMoveLeft && !cameraMoveRight){
+			init = false;
+		}
+		
+		if (!init){
+			camera.lookAt(new THREE.Vector3());	
+			init = true;
+		}
+		camera.position.set(3, 0.8, 0);		
 	});
 	
 
