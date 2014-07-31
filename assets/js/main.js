@@ -15,7 +15,7 @@ var RENDERER = {
 var meshes = {};
 var game = {};
 
-game.level=1;
+game.level=0;
 
 /********************
  * Global Variables *
@@ -75,7 +75,10 @@ function renderScene() {
 }
 
 function updateScene() {  
-  stats.update(); 
+  stats.update();
+  
+  //fire Trigger
+  $(window).trigger("updateScene");  
 }
 
 function animateScene() { 
@@ -95,7 +98,8 @@ function addToDOM(object) {
 
 //load level
    function loadLevel(level){
-   var levelURL = "./assets/js/levels/level"+level+".js";
+	   console.log("loadLevel");
+	   var levelURL = "./assets/js/levels/level"+level+".js";
 	   $.ajax({
 			url: levelURL,
 			dataType: "script",
